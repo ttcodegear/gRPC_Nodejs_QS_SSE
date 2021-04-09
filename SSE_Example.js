@@ -64,10 +64,10 @@ function scriptEval(header, call) {
     });
   }
   else {
-    var script_args = [];
     call.on('data', function(requestStream){
     });
     call.on('end', function(){
+      var script_args = [];
       var result = NaN;
       try {
         var func = new Function(header.getScript());
@@ -84,7 +84,6 @@ function scriptEval(header, call) {
         row.setDualsList([dual]);
         reply.setRowsList([row]);
         call.write(reply);
-        call.end();
       }
       else {
         var response_rows = [];
@@ -98,8 +97,8 @@ function scriptEval(header, call) {
         var reply = new messages.BundledRows();
         reply.setRowsList(response_rows);
         call.write(reply);
-        call.end();
       }
+      call.end();
     });
   }
 }
@@ -111,8 +110,8 @@ function scriptAggrStr(header, call) {
   console.log('script=' + header.getScript());
   // パラメータがあるか否かをチェック
   if( header.getParamsList().length > 0 ) {
+    var all_args = [];
     call.on('data', function(requestStream){
-      var all_args = [];
       var rows = requestStream.getRowsList();
       for(var i = 0; i < rows.length; i++) {
         var script_args = [];
@@ -124,6 +123,8 @@ function scriptAggrStr(header, call) {
         });
         all_args.push(script_args);
       }
+    });
+    call.on('end', function(){
       console.log('args=', all_args);
       var result = NaN;
       try {
@@ -155,16 +156,14 @@ function scriptAggrStr(header, call) {
         reply.setRowsList(response_rows);
         call.write(reply);
       }
-    });
-    call.on('end', function(){
       call.end();
     });
   }
   else {
-    var script_args = [];
     call.on('data', function(requestStream){
     });
     call.on('end', function(){
+      var script_args = [];
       var result = NaN;
       try {
         var func = new Function(header.getScript());
@@ -181,7 +180,6 @@ function scriptAggrStr(header, call) {
         row.setDualsList([dual]);
         reply.setRowsList([row]);
         call.write(reply);
-        call.end();
       }
       else {
         var response_rows = [];
@@ -195,8 +193,8 @@ function scriptAggrStr(header, call) {
         var reply = new messages.BundledRows();
         reply.setRowsList(response_rows);
         call.write(reply);
-        call.end();
       }
+      call.end();
     });
   }
 }
