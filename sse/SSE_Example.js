@@ -13,7 +13,7 @@ function sumOfColumn(call) {
     }
   });
   call.on('end', function(){
-    var result = params.reduce((a, b) => a + b, 0);
+    var result = params.reduce((a, b) => a + b, 0); // Col1 + Col1 + ...
     var reply = new messages.BundledRows();
     var row = new messages.Row();
     var dual = new messages.Dual();
@@ -31,7 +31,7 @@ function sumOfRows(call) {
     var response_rows = [];
     var rows = requestStream.getRowsList();
     for(var i = 0; i < rows.length; i++) {
-      var param1 = rows[i].getDualsList()[0].getNumdata();
+      var param1 = rows[i].getDualsList()[0].getNumdata(); // row=[Col1,Col2]
       var param2 = rows[i].getDualsList()[1].getNumdata();
       var result = param1 + param2; // Col1 + Col2
       var row = new messages.Row();
@@ -80,27 +80,27 @@ function getCapabilities(call, callback) {
 
   // SumOfColumn
   var func0 = new messages.FunctionDefinition();
-  func0.setFunctionid(0);       // 関数ID
-  func0.setName('SumOfColumn'); // 関数名
-  func0.setFunctiontype(1);     // 関数タイプ=0=スカラー,1=集計,2=テンソル
-  func0.setReturntype(1);       // 関数戻り値=0=文字列,1=数値,2=Dual
+  func0.setFunctionid(0);                                   // 関数ID
+  func0.setName('SumOfColumn');                             // 関数名
+  func0.setFunctiontype(messages.FunctionType.AGGREGATION); // 関数タイプ=0=スカラー,1=集計,2=テンソル
+  func0.setReturntype(messages.DataType.NUMERIC);           // 関数戻り値=0=文字列,1=数値,2=Dual
   var func0_p1 = new messages.Parameter();
-  func0_p1.setName('col1');     // パラメータ名
-  func0_p1.setDatatype(1);      // パラメータタイプ=0=文字列,1=数値,2=Dual
+  func0_p1.setName('col1');                                 // パラメータ名
+  func0_p1.setDatatype(messages.DataType.NUMERIC);          // パラメータタイプ=0=文字列,1=数値,2=Dual
   func0.setParamsList([func0_p1]);
 
   // SumOfRows
   var func1 = new messages.FunctionDefinition();
-  func1.setFunctionid(1);       // 関数ID
-  func1.setName('SumOfRows');   // 関数名
-  func1.setFunctiontype(2);     // 関数タイプ=0=スカラー,1=集計,2=テンソル
-  func1.setReturntype(1);       // 関数戻り値=0=文字列,1=数値,2=Dual
+  func1.setFunctionid(1);                                   // 関数ID
+  func1.setName('SumOfRows');                               // 関数名
+  func1.setFunctiontype(messages.FunctionType.TENSOR);      // 関数タイプ=0=スカラー,1=集計,2=テンソル
+  func1.setReturntype(messages.DataType.NUMERIC);           // 関数戻り値=0=文字列,1=数値,2=Dual
   var func1_p1 = new messages.Parameter();
-  func1_p1.setName('col1');     // パラメータ名
-  func1_p1.setDatatype(1);      // パラメータタイプ=0=文字列,1=数値,2=Dual
+  func1_p1.setName('col1');                                 // パラメータ名
+  func1_p1.setDatatype(messages.DataType.NUMERIC);          // パラメータタイプ=0=文字列,1=数値,2=Dual
   var func1_p2 = new messages.Parameter();
-  func1_p2.setName('col2');     // パラメータ名
-  func1_p2.setDatatype(1);      // パラメータタイプ=0=文字列,1=数値,2=Dual
+  func1_p2.setName('col2');                                 // パラメータ名
+  func1_p2.setDatatype(messages.DataType.NUMERIC);          // パラメータタイプ=0=文字列,1=数値,2=Dual
   func1.setParamsList([func1_p1, func1_p2]);
 
   capabilities.setFunctionsList([func0, func1]);
