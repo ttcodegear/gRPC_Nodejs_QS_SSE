@@ -1,17 +1,17 @@
 # gRPC_Nodejs_QS_SSE
-C:\>node --version
+$>node --version
 
   v12.21.0
 
-C:\>npm install -g grpc-tools
+$>npm install -g grpc-tools
 
-C:\>npm list -g
+$>npm list -g
 
   +-- grpc-tools@1.11.1
 
-C:\>grpc_tools_node_protoc --js_out=import_style=commonjs,binary:[protohub_path] --grpc_out=grpc_js:[grpc_path] proto_file_path
+$>grpc_tools_node_protoc --js_out=import_style=commonjs,binary:[protohub_path] --grpc_out=grpc_js:[grpc_path] proto_file_path
 
-C:\>dir *_pb*
+$>ls *_pb*
 
   xxxx_pb.js
 
@@ -21,49 +21,49 @@ C:\>dir *_pb*
 
 
 
-C:\>grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./ --grpc_out=grpc_js:./ ./helloworld.proto
+$>grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./ --grpc_out=grpc_js:./ ./helloworld.proto
 
-C:\>npm install @grpc/proto-loader google-protobuf @grpc/grpc-js
+$>npm install @grpc/proto-loader google-protobuf @grpc/grpc-js
 
-C:\>node greeter_server.js
+$>node greeter_server.js
 
-C:\>node greeter_client.js
-
-
-
-
-
-C:\>grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./ --grpc_out=grpc_js:./ ./hellostreamingworld.proto
-
-C:\>npm install @grpc/proto-loader google-protobuf @grpc/grpc-js
-
-C:\>node greeter_stream_server.js
-
-C:\>node greeter_stream_client.js
+$>node greeter_client.js
 
 
 
 
 
-C:\>openssl req -newkey rsa:2048 -nodes -keyout server.key -x509 -days 3650 -out server.crt
+$>grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./ --grpc_out=grpc_js:./ ./hellostreamingworld.proto
 
-C:\>grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./ --grpc_out=grpc_js:./ ./helloworld.proto
+$>npm install @grpc/proto-loader google-protobuf @grpc/grpc-js
 
-C:\>npm install @grpc/proto-loader google-protobuf @grpc/grpc-js
+$>node greeter_stream_server.js
 
-C:\>node greeter_ssl_server.js
-
-C:\>node greeter_ssl_client.js
+$>node greeter_stream_client.js
 
 
 
 
 
-C:\>grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./ --grpc_out=grpc_js:./ ./ServerSideExtension.proto
+$>openssl req -newkey rsa:2048 -nodes -keyout server.key -x509 -days 3650 -out server.crt
 
-C:\>npm install @grpc/proto-loader google-protobuf @grpc/grpc-js undercore
+$>grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./ --grpc_out=grpc_js:./ ./helloworld.proto
 
-C:\>node SSE_Example.js
+$>npm install @grpc/proto-loader google-protobuf @grpc/grpc-js
+
+$>node greeter_ssl_server.js
+
+$>node greeter_ssl_client.js
+
+
+
+
+
+$>grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./ --grpc_out=grpc_js:./ ./ServerSideExtension.proto
+
+$>npm install @grpc/proto-loader google-protobuf @grpc/grpc-js undercore
+
+$>node SSE_Example.js
 
 
 
