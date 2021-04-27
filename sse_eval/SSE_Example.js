@@ -126,7 +126,7 @@ function scriptAggrStr(header, call) {
     });
     call.on('end', function(){
       console.log('args=', all_args);
-      var result = NaN;
+      var result = "";
       try {
         var func = new Function(header.getScript());
         result = func.call(null, all_args, _);
@@ -164,7 +164,7 @@ function scriptAggrStr(header, call) {
     });
     call.on('end', function(){
       var script_args = [];
-      var result = NaN;
+      var result = "";
       try {
         var func = new Function(header.getScript());
         result = func.call(null, script_args, _);
