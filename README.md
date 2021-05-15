@@ -79,3 +79,49 @@ SSEPlugin=Column,localhost:50053
 
 ------
 
+[for SSL]
+
+------
+
+var fs = require('fs');
+
+...
+
+var cacert = fs.readFileSync("./root_cert.pem");
+
+var cert_chain = fs.readFileSync("./sse_server_cert.pem");
+
+var private_key = fs.readFileSync("./sse_server_key.pem");
+
+var credentials = grpc.ServerCredentials.createSsl(
+
+  cacert, // Root CA certificates for validating client certificates
+
+  [{cert_chain, private_key}],
+
+  false   // checkClientCertificate(true/false)
+
+);
+
+...
+
+server.bindAsync('0.0.0.0:50053',
+
+                 credentials,
+
+                 (err, port) => {server.start();});
+
+------
+
+C:\Users\[user]\Documents\Qlik\Sense\Settings.ini
+
+------
+
+[Settings 7]
+
+SSEPlugin=Column,localhost:50053,C:\...\sse_Column_generated_certs\sse_Column_client_certs_used_by_qlik
+
+
+
+------
+
