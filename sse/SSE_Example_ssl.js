@@ -114,7 +114,7 @@ var private_key = fs.readFileSync("./sse_server_key.pem");
 var credentials = grpc.ServerCredentials.createSsl(
   cacert, // Root CA certificates for validating client certificates
   [{cert_chain, private_key}],
-  false   // checkClientCertificate(true/false)
+  true   // checkClientCertificate(true/false)
 );
 
 var server = new grpc.Server();
